@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+#
+
+import gi
+gi.require_version("Gtk", "2.0")
+import pygtk
+pygtk.require('2.0')
+import glib
+import gtk
+from gi.repository import MatePanelApplet
+from gettext import gettext as _
+import gettext
+from gi.repository import AppIndicator as appindicator
+#~ import appindicator
+
+ind = appindicator.Indicator.new("feedreader-applet", "feedreader-applet", appindicator.IndicatorCategory.APPLICATION_STATUS)
+
+def applet_fill(applet):
+	#~ pb5=gtk.EventBox()
+	#~ pb4.add(ind)
+	#~ b5=gtk.Image(stock=gtk.STOCK_MEDIA_PAUSE)
+	#~ hb=gtk.HBox()
+	#~ hb.pack_start(pb5, False, False, 2)
+	applet.add(ind)
+	acts=[
+	("fprop", gtk.STOCK_PROPERTIES, _("Settings"), None, None, fsettings),
+	]
+	propxml="""
+		<menuitem name="fprop" action="fprop" />
+		<menuitem name="About Item" verb="About" stockid="gtk-about" />
+		"""
+	ag=gtk.ActionGroup.new("fr_ag")
+	ag.add_actions(acts, None)
+	p=applet.get_preferences_path()
+	applet.setup_menu(propxml, ag)
+	applet.show_all()
+
+def factory(applet, iid, data):
+	applet_fill(applet)
+	return True
+
+MatePanelApplet.Applet.factory_main("feedreaderA2", True,
+                                    MatePanelApplet.Applet.__gtype__,
+                                    factory, None)
+
+if __name__ == '__main__':
+	print "dsdsd"
+	main_window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+	main_window.set_title("GNOME Applet Skeleton")
+	main_window.connect("destroy", gtk.main_quit)
+	app=MatePanelApplet.Applet()
+	factory(app, None, 0)
+	app.reparent(main_window)
+	main_window.show_all()
+	gtk.main()
+	sys.exit()

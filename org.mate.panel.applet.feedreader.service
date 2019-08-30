@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=org.mate.panel.applet.feedreaderA2
+Exec=/usr/local/libexec/feedreader-applet
