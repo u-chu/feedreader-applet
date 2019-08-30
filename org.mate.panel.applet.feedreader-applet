@@ -1,10 +1,10 @@
 [Applet Factory]
-Id=feedreaderA2
+Id=feedreaderA2factory
 Location=/usr/local/libexec
 Name=Feed Reader Applet
 Description=Feed Reader Applet
 
-[FeedReaderApplet]
+[feedreaderA2]
 Name=Feed Reader Applet
 Description=Feed Reader Applet
 Icon= feed

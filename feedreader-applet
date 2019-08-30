@@ -17,11 +17,6 @@ from gi.repository import AppIndicator as appindicator
 ind = appindicator.Indicator.new("feedreader-applet", "feedreader-applet", appindicator.IndicatorCategory.APPLICATION_STATUS)
 
 def applet_fill(applet):
-	#~ pb5=gtk.EventBox()
-	#~ pb4.add(ind)
-	#~ b5=gtk.Image(stock=gtk.STOCK_MEDIA_PAUSE)
-	#~ hb=gtk.HBox()
-	#~ hb.pack_start(pb5, False, False, 2)
 	applet.add(ind)
 	acts=[
 	("fprop", gtk.STOCK_PROPERTIES, _("Settings"), None, None, fsettings),
@@ -40,7 +35,7 @@ def factory(applet, iid, data):
 	applet_fill(applet)
 	return True
 
-MatePanelApplet.Applet.factory_main("feedreaderA2", True,
+MatePanelApplet.Applet.factory_main("feedreaderA2factory", True,
                                     MatePanelApplet.Applet.__gtype__,
                                     factory, None)
 
